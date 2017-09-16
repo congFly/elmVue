@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <v-header>
+    <v-header :seller="seller">
       i am header!
     </v-header>
     <div class="tab">
@@ -17,11 +17,25 @@
     <router-view></router-view>
   </div>
 </template>
-
-<script>
+<script type="text/ecmascript-6">
   import  header from './components/header/header.vue'
-
+  const Err_ok = 0;  //ok状态码
   export  default{
+    data(){
+      return {
+        seller: {}
+      }
+    },
+    create(){
+      this.$http.get('/api/seller').then((response) => {
+        response = response.body;
+        console.log(response.data)
+        if (response === Err_ok) {
+          this.seller = response.data();
+          console.log(this.seller)
+        }
+      })
+    },
     components: {
       'v-header': header
     }
