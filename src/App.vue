@@ -34,10 +34,32 @@
     width: 100%;
     line-height: 40px;
     text-align: center;
+    border-bottom: 1px solid rgba(7, 17, 27, 0.28);
+    position: relative;
+  }
+
+  .tab :after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    border-top: 1px solid rgba(7, 17, 27, 0.28);
+    content: ' '
   }
 
   .tab-item {
     flex: 1;
     text-align: center;
+  }
+
+  .tab-item a {
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    color: rgb(77, 85, 93);
+  }
+
+  .tab-item a:active {
+    color: red;
   }
 </style>
