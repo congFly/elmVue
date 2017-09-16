@@ -8,14 +8,11 @@ import goods from './components/goods/goods.vue'
 Vue.use(VueRouter);
 Vue.config.productionTip = false
 
-var app = Vue.extend(App);
-
-
-var router = new VueRouter({
-  routers: [
+const router = new VueRouter({
+  routes:[
     {
-      path: './goods',
-      component: goods
+      path:'/goods',
+      component:goods
     }
   ]
 });
@@ -23,6 +20,6 @@ var router = new VueRouter({
 new Vue({    //定义作用范围，挂载到id=app的div上面
   el: '#app',
   render: h => h(App),  //初始一个默认组件
-  router: router //引入路由
+  router:router //引入路由
 });
 
