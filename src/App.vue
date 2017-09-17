@@ -28,7 +28,7 @@
     },
     created(){
       this.$http.get('/api/seller').then((response) => {
-        response = response.body;
+        response = response.data;
         if (response.errno === ERR_OK) {
           this.seller = response.data;
         }
