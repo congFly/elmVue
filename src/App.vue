@@ -19,20 +19,18 @@
 </template>
 <script type="text/ecmascript-6">
   import  header from './components/header/header.vue'
-  const Err_ok = 0;  //ok状态码
+  const ERR_OK = 0; //ok状态码
   export  default{
     data(){
       return {
         seller: {}
       }
     },
-    create(){
+    created(){
       this.$http.get('/api/seller').then((response) => {
         response = response.body;
-        console.log(response.data)
-        if (response === Err_ok) {
-          this.seller = response.data();
-          console.log(this.seller)
+        if (response.errno === ERR_OK) {
+          this.seller = response.data;
         }
       })
     },
