@@ -27,6 +27,9 @@
     <div class="bulletin-wrapper">
       <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
     </div>
+    <div class="background">
+      <img :src="seller.avatar" width="100%" height="100%">
+    </div>
   </div>
 
 </template>
@@ -50,25 +53,31 @@
   }
 
   .header {
+    position: relative;
+    overflow: hidden;
     color: #fff;
-    background-color: #999;
+    background: rgba(7, 17, 27, 0.5);
   }
 
   .content-wrapper {
+    position: relative;
     padding: 24px 12px 18px 24px;
     font-size: 0;
-    position: relative;
   }
 
   .avatar {
     display: inline-block;
-    border-right: 2px;
+    vertical-align: top;
+  }
+
+  .avatar img {
+    -webkit-border-radius:;
+    border-radius: 2px;
   }
 
   .content {
     display: inline-block;
-    font-size: 14px;
-    margin: 16px;
+    margin: 0 0 0 5px;
   }
 
   .title {
@@ -77,18 +86,19 @@
 
   .brand {
     display: inline-block;
+    vertical-align: top;
     width: 30px;
     height: 18px;
     background-image: url(brand@2x.png);
     background-size: 30px 18px;
     background-repeat: no-repeat;
-    vertical-align: top;
   }
 
   .name {
     margin-left: 6px;
     font-size: 16px;
     line-height: 18px;
+    font-weight: bold;
   }
 
   .description {
@@ -99,6 +109,7 @@
 
   .icon {
     display: inline-block;
+    vertical-align: top;
     width: 12px;
     height: 12px;
     margin-right: 4px;
@@ -114,7 +125,6 @@
   .text {
     line-height: 12px;
     font-size: 10px;
-    vertical-align: top;
   }
 
   .support-count {
@@ -130,9 +140,8 @@
   }
 
   .count {
+    vertical-align: top;
     font-size: 10px;
-    line-height: 24px;
-    margin-left: 2px;
   }
 
   .bulletin-wrapper {
@@ -143,10 +152,12 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    background: rgba(7, 17, 27, 0.2);
   }
 
   .bulletin-title {
     display: inline-block;
+    vertical-align: top;
     margin-top: 9px;
     width: 22px;
     height: 12px;
@@ -156,8 +167,18 @@
   }
 
   .bulletin-text {
-    font-size: 10px;
+    vertical-align: 10px;
     margin: 0 4px;
-    vertical-align: top;
+    font-size: 10px;
+  }
+
+  .background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(10px);
   }
 </style>
