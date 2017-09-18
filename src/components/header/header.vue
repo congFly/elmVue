@@ -21,12 +21,12 @@
         </div>
       </div>
       <div v-if="seller.supports" class="support-count">
-        <span class="count glyphicon glyphicon-chevron-right">{{seller.supports.length}}个</span>
-        <span class="glyphicon glyphicon-chevron-right"></span>
+        <span class="count">{{seller.supports.length}}个</span>
       </div>
-
     </div>
-    <div class="bulletin-wrapper"></div>
+    <div class="bulletin-wrapper">
+      <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
+    </div>
   </div>
 
 </template>
@@ -133,5 +133,31 @@
     font-size: 10px;
     line-height: 24px;
     margin-left: 2px;
+  }
+
+  .bulletin-wrapper {
+    position: relative;
+    height: 28px;
+    line-height: 28px;
+    padding: 0 22px 0 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bulletin-title {
+    display: inline-block;
+    margin-top: 9px;
+    width: 22px;
+    height: 12px;
+    background: url(bulletin@2x.png);
+    background-size: 22px 12px;
+    background-repeat: no-repeat;
+  }
+
+  .bulletin-text {
+    font-size: 10px;
+    margin: 0 4px;
+    vertical-align: top;
   }
 </style>
