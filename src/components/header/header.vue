@@ -20,27 +20,59 @@
           </div>
         </div>
       </div>
-      <div v-if="seller.supports" class="support-count">
+      <div v-if="seller.supports" class="support-count" @click="showDetail">
         <span class="count">{{seller.supports.length}}个</span>
       </div>
     </div>
-    <div class="bulletin-wrapper">
+    <div class="bulletin-wrapper" @click="showDetail">
       <span class="bulletin-title"></span><span class="bulletin-text">{{seller.bulletin}}</span>
     </div>
     <div class="background">
       <img :src="seller.avatar" width="100%" height="100%">
+    </div>
+    <div v-show="detailShow" class="detail">
+      <div class="detail-wrapper clearfix">
+        <div class="detail-main">
+          <h1 class="name">{{seller.name}}</h1>
+          <div class="star-wrapper">
+            <star :size="48" :score="seller.score"></star>
+          </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">优惠信息</div>
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="detail-close">
+        <span class="glyphicon glyphicon-remove"></span>
+      </div>
     </div>
   </div>
 
 </template>
 
 <script type="text/ecmascript-6">
+  import star from '../star/star.vue'
   export default{
     props: {
       seller: {type: Object}
     },
+    data(){
+      return {
+        detailShow: false
+      };
+    },
+    methods: {
+      showDetail(){
+        this.detailShow = true;
+      }
+    },
     created(){
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
+    },
+    components: {
+      star
     }
   };
 </script>
@@ -71,7 +103,6 @@
   }
 
   .avatar img {
-    -webkit-border-radius:;
     border-radius: 2px;
   }
 
@@ -167,7 +198,7 @@
   }
 
   .bulletin-text {
-    vertical-align: 10px;
+    /*vertical-align: 10px;*/
     margin: 0 4px;
     font-size: 10px;
   }
@@ -180,5 +211,79 @@
     height: 100%;
     z-index: -1;
     filter: blur(10px);
+  }
+
+  .detail {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    opacity: 1;
+    background: rgba(7, 17, 27, 0.8);
+  }
+
+  .clearfix {
+    display: inline-block;
+
+  }
+
+  .clearfix:after {
+    content: '';
+    height: 0;
+    clear: both;
+    visibility: hidden;
+  }
+
+  .detail-wrapper {
+    width: 100%;
+    min-height: 100%;
+  }
+
+  .detail-main {
+    margin-top: 64px;
+    padding-bottom: 64px;
+  }
+
+  .detail-close {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    margin: -64px auto 0 auto;
+    clear: both;
+    font-size: 32px;
+  }
+
+  .name {
+    line-height: 16px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .star-wrapper {
+    margin-top: 18px;
+    padding: 2px 0;
+    text-align: center;
+  }
+
+  .title {
+    display: flex;
+    width: 80%;
+    margin: 30px auto 24px auto;
+  }
+
+  .line {
+    flex: 1;
+    position: relative;
+    top: -6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .text {
+    padding: 0 12px;
+    font-size: 14px;
   }
 </style>
