@@ -30,32 +30,42 @@
     <div class="background">
       <img :src="seller.avatar" width="100%" height="100%">
     </div>
-    <div v-show="detailShow" class="detail">
-      <div class="detail-wrapper clearfix">
-        <div class="detail-main">
-          <h1 class="name">{{seller.name}}</h1>
-          <div class="star-wrapper">
-            <star :size="48" :score="seller.score"></star>
+    <transition name="fade">
+      <div v-show="detailShow" class="detail">
+        <div class="detail-wrapper clearfix">
+          <div class="detail-main">
+            <h1 class="name">{{seller.name}}</h1>
+            <div class="star-wrapper">
+              <star :size="48" :score="seller.score"></star>
+            </div>
+            <div class="title">
+              <div class="line"></div>
+              <div class="text">优惠信息</div>
+              <div class="line"></div>
+            </div>
+            <ul v-if="seller.supports" class="supports">
+              <li class="support-item" v-for="(item,index) in seller.supports">
+                <span class="icon" :class="classMap[seller.supports[index].type]"></span>
+                <span class="text">{{seller.supports[index].description}}</span>
+              </li>
+            </ul>
+            <div class="title">
+              <div class="line"></div>
+              <div class="text">商家公告</div>
+              <div class="line"></div>
+            </div>
+            <div class="bulletin">
+              <p class="content">{{seller.bulletin}}</p>
+            </div>
           </div>
-          <div class="title">
-            <div class="line"></div>
-            <div class="text">优惠信息</div>
-            <div class="line"></div>
-          </div>
-          <ul v-if="seller.supports" class="supports">
-            <li class="support-item" v-for="(item,index) in seller.supports">
-              <span class="icon" :class="classMap[seller.supports[index].type]"></span>
-              <span class="text">{{seller.supports[index].description}}</span>
-            </li>
-          </ul>
         </div>
-      </div>
-      <div class="detail-close">
-        <span class="glyphicon glyphicon-remove"></span>
-      </div>
-    </div>
-  </div>
+        <div class="detail-close" @click="hideDetail">
+          <span class="glyphicon glyphicon-remove"></span>
+        </div>
 
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
@@ -72,6 +82,9 @@
     methods: {
       showDetail(){
         this.detailShow = true;
+      },
+      hideDetail(){
+        this.detailShow = false;
       }
     },
     created(){
@@ -217,6 +230,7 @@
     height: 100%;
     z-index: -1;
     filter: blur(10px);
+    transition: all 0.5s;
   }
 
   .detail {
@@ -293,4 +307,56 @@
     font-weight: 700;
     font-size: 14px;
   }
+
+  .supports {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .support-item {
+    padding: 0 12px;
+    margin-bottom: 12px;
+    font-size: 0;
+  }
+
+  .support-item :last-child {
+    margin-bottom: 0;
+  }
+
+  .icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: top;
+    margin-right: 6px;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+  }
+
+  .text {
+    line-height: 16px;
+    font-size: 12px;
+  }
+
+  .bulletin {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .content {
+    padding: 0 12px;
+    line-height: 24px;
+    font-size: 12px;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: all 1s
+  }
+
+  .fade-enter, .fade-leave {
+    opacity: 0;
+    background: rgba(7, 17, 27, 0);
+  }
+
+
 </style>
