@@ -130,10 +130,6 @@
     margin: 0 0 0 5px;
   }
 
-  .title {
-    margin: 2px 0 8px 0;
-  }
-
   .brand {
     display: inline-block;
     vertical-align: top;
@@ -291,7 +287,7 @@
 
   .title {
     display: flex;
-    width: 80%;
+    width: 100%;
     margin: 28px auto 24px auto;
   }
 
