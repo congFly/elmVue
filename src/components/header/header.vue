@@ -12,12 +12,10 @@
         <div class="description">
           {{seller.description}}/{{seller.deliveryTime}}分钟送达
         </div>
-        <div>
-          <div v-if="seller.supports" class="support">
-            <!--应该有个方法来换图片-->
-            <span class="icon" :class="classMap[seller.supports[0].type]"></span>
-            <span class="text">{{seller.supports[0].description}}</span>
-          </div>
+        <div v-if="seller.supports" class="support">
+          <!--应该有个方法来换图片-->
+          <span class="icon" :class="classMap[seller.supports[0].type]"></span>
+          <span class="text-3">{{seller.supports[0].description}}</span>
         </div>
       </div>
       <div v-if="seller.supports" class="support-count" @click="showDetail">
@@ -168,7 +166,7 @@
     background-image: url(guarantee_2@2x.png);
   }
 
-  .text {
+  .text-3 {
     line-height: 12px;
     font-size: 10px;
   }
