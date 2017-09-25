@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <v-header :seller="seller">
-      i am header!
     </v-header>
     <div class="tab">
       <div class="tab-item">
