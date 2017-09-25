@@ -39,12 +39,14 @@
         </li>
       </ul>
     </div>
+    <shop-cart  ref="shopcart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shop-cart>
   </div>
 
 </template>
 
 <script>
   import BScroll from 'better-scroll';
+  import shopCart from '../shopCart/shopCart';
 
   const ERR_OK = 0;
   export default{
@@ -78,7 +80,7 @@
         response = response.body;
         if (response.errno === ERR_OK) {
           this.goods = response.data;
-          this.$nextTick(() => {
+          this.$nextTick(() => {   //确保dom已经渲染
             this._initScroll();
             this._calculateHeight();
           });
@@ -117,11 +119,14 @@
           this.ListHeight.push(height);
         }
       }
+    },
+    components: {
+      shopCart
     }
   }
 </script>
 
-<style>
+<style rel="stylesheet" scoped>
 
   .goods {
     display: flex;

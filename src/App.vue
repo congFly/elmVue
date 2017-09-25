@@ -14,7 +14,7 @@
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
-    <router-view></router-view>
+    <router-view :seller="seller"></router-view>
   </div>
 </template>
 <script type="text/ecmascript-6">
@@ -40,7 +40,7 @@
   }
 </script>
 
-<style>
+<style rel="stylesheet" scoped>
   .tab {
     display: flex;
     width: 100%;

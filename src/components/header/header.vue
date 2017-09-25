@@ -94,7 +94,7 @@
   };
 </script>
 
-<style>
+<style rel="stylesheet" scoped>
   body, html {
     line-height: 1;
     font-weight: 200;
